@@ -1,23 +1,20 @@
-const display = document.getElementById('display');
-
 function append(value) {
-  const operators = ['+', '-', '*', '/', '×', '÷'];
-  let current = display.innerText;
+  const operators = ['+', '-', '*', '/', '×', '÷', '%'];
+  const lastChar = display.innerText.slice(-1);
 
-  if (current === '0' && !operators.includes(value)) {
+  if (display.innerText === '0') {
     display.innerText = value;
     return;
   }
 
-  const lastChar = current.slice(-1);
-
+  // If last character is operator and new input is also operator
   if (operators.includes(lastChar) && operators.includes(value)) {
-    display.innerText = current.slice(0, -1) + value;
+    // Replace last operator with new one
+    display.innerText = display.innerText.slice(0, -1) + value;
   } else {
     display.innerText += value;
   }
 }
-
 function clearDisplay() {
   display.innerText = '0';
 }
